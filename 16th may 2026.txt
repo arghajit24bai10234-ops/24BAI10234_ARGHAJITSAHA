@@ -1,0 +1,55 @@
+show databases;
+
+create database vitcampus;
+create database vitcampus1;
+
+drop database vitcampus1;
+
+
+show databases;
+
+use vitcampus;
+
+
+create table cse(
+sid int8,
+sname varchar(50),
+smarks int1);
+
+create table eee(
+sid int8,
+sname varchar(50),
+smarks int1);
+
+create table mec(
+sid int8,
+sname varchar(50),
+smarks int1);
+
+show tables from vitcampus;
+
+select * from cse;
+
+insert into cse values(1,"aj",90);
+insert into cse values(2,"aj2",92);
+insert into cse values(3,"aj3",95);
+insert into cse values(4,"arjun",90);
+insert into cse values(5,"anurag",84);
+
+
+insert into eee values(1,"aj",90);
+insert into eee values(2,"arjun",87);
+insert into eee values(3,"anurag",91);
+insert into eee values(4,"anjali",97);
+insert into eee values(5,"arun",82);
+
+insert into mec values(1,"aj",87);
+insert into mec values(2,"arjun",90);
+insert into mec values(3,"anurag",67);
+insert into mec values(4,"anjali",87);
+insert into mec values(5,"arun",91);
+
+
+select * from cse;
+select * from eee;
+select * from mec;
