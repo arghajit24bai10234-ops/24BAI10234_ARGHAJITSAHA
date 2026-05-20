@@ -1,0 +1,103 @@
+create table person(
+id int not null,
+lastname varchar(255) not null,
+firstname varchar(255) not null,
+age int);
+
+desc person;
+
+insert into person values(101,"v","a",29);
+insert into person values(101,null,"a",29);# show error
+insert into person values(101,"vi","a",null);
+
+select * from person;
+
+alter table person
+add unique (age);
+
+insert into person values(102,"vo","a",29);# try to enter same age its not accepting  its show duplicate vvalue, better for roll no,id etc
+
+alter table person
+drop constraint age;# only applicable for unique
+
+delete from person
+where age= 29;
+
+
+drop table person;
+create table person(
+id int not null,
+lastname varchar(255) not null,
+firstname varchar(255) not null,
+age int not null,
+check(age>=18 and age<=23)
+);
+
+insert into person values(102,"vo","a",29);# not allowed
+
+insert into person values(102,"vo","a",20);
+select * from person;
+
+create table persons(
+id int not null,
+lastname varchar(255) not null,
+firstname varchar(255) not null,
+age int not null
+);
+desc persons;
+
+ALTER TABLE Persons
+ADD CHECK (Age>=18 and age<=23);
+
+create table persons1(
+id int not null,
+lastname varchar(255) not null,
+firstname varchar(255) not null,
+age int ,
+city varchar(255) default " coimbatore");
+
+desc persons1;
+
+create table products(
+pid int primary key,
+pname varchar(100) not null,
+prefno int not null unique);
+
+desc products;
+
+insert into products values(101,"electronics",19929);
+select *from products;
+insert into products values(102,"furniture",19930);
+
+
+alter table persons
+add primary key(id);
+
+desc persons;
+
+alter table persons
+drop primary key ;
+
+create table category(
+cid int primary key ,
+cname varchar(100) not null);
+
+insert into category values(101,"furniture"),(102,"electronics");
+
+drop table products1;
+
+create table product(
+pid int primary key,
+pname varchar(100) not null,
+cid int,
+foreign key (cid) references category(cid));# interconnected
+
+
+desc product; # multiple key show foreign key
+
+insert into product value(501,"hp laptop",101);
+insert into product value(502,"wooden cup",102);
+insert into product value(503,"powerbank",101);
+insert into product value(504,"powerbank samsung",105);
+
+delete from category where cid=101;# also not update as 64 bit encryption id very secure
