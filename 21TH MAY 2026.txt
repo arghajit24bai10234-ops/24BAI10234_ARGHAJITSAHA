@@ -1,0 +1,87 @@
+use vitcampus;
+show tables;
+
+# on delete cascade  and on upadate cascadefor foreing key only done when create table not possible by alter 
+
+drop table product;
+
+create table product(
+pid int primary key,
+pname varchar(100) not null,
+cid int,
+foreign key (cid) references category(cid) on delete cascade);
+
+select * from category;
+
+delete from category where cid=102;
+
+select * from category;
+
+create table product(
+pid int primary key,
+pname varchar(100) not null,
+cid int,
+foreign key (cid) references category(cid) on update cascade);
+
+select * from category;
+
+update  category
+set cid=102 where cid =101;
+
+select * from category;
+
+insert into category values(103,"home appl");
+
+delete from category
+where cid=103;
+
+select * from worker;
+
+select first_name,salary,department from worker
+where department="admin" order by  salary ;# bydeafult asc
+
+select first_name,salary,department from worker
+where department="admin" order by  salary desc;# here amit and vevek is manily based on the insertion way
+
+#group by
+
+select count(worker_id) from worker where department="admin";
+
+select count(worker_id) from worker where department="admin" or department="hr";
+
+select department,count(department) from worker
+group by department;
+
+select department,count(department) from worker
+group by department order by department asc;
+
+select department, sum(salary) from worker group by department;
+
+select department,count(department) from worker
+
+group by department having count(department)>=3 order by department asc;
+
+SELECT department, SUM(salary) from worker GROUP BY department HAVING sum(department) < 300000 ;
+
+select * from worker limit 1 offset 1;
+select * from worker limit 1 offset 3;
+select * from worker limit 3 offset 4;
+
+select first_name,department from worker
+where worker_id in (select id from toppers); 
+
+# subquery
+
+create table toppers( id int);
+insert into toppers values(2),(5),(6);
+select * from toppers;
+
+
+select sum(salary), department from worker group by department order by sum(salary) asc limit 2;
+
+select salary,first_name,department from worker where department="admin" order by salary desc limit 1 offset 1;
+
+SELECT * from worker where DEPARTMENT ='ADMIN' order by  salary DESC ;
+
+select first_name, department, salary from worker w1
+where salary = (select distinct salary from worker w2 where w1.department = w2.department order by salary desc limit 1 offset 1);
